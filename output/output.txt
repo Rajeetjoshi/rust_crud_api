@@ -1,0 +1,56 @@
+
+PS C:\Users\joshi> psql -U postgres
+Password for user postgres:
+psql (17.6)
+WARNING: Console code page (437) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# CREATE DATABASE rust_dbb;
+CREATE DATABASE
+postgres=# CREATE USER rust_userr WITH PASSWORD 'password';
+CREATE ROLE
+postgres=# GRANT ALL PRIVILEGES ON DATABASE rust_dbb TO rust_userr;
+GRANT
+postgres=# \c rust_db;
+You are now connected to database "rust_db" as user "postgres".
+rust_db=# CREATE TABLE usersss (
+rust_db(#     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+rust_db(#     name TEXT NOT NULL,
+rust_db(#     email TEXT UNIQUE NOT NULL
+rust_db(# );
+CREATE TABLE
+rust_db=# INSERT INTO usersss (name, email) VALUES ('Rajit', 'rajit@example.com');
+INSERT 0 1
+rust_db=# SELECT * FROM usersss;
+                  id                  | name  |       email
+--------------------------------------+-------+-------------------
+ 135b9109-215f-4005-a8a0-785089188643 | Rajit | rajit@example.com
+(1 row)
+
+rust_db=#  INSERT INTO usersss (name, email) VALUES ('Nupoor', 'nupoor@example.com');
+INSERT 0 1
+rust_db=#  SELECT * FROM usersss;
+                  id                  |  name  |       email
+--------------------------------------+--------+--------------------
+ 135b9109-215f-4005-a8a0-785089188643 | Rajit  | rajit@example.com
+ c6ebe93d-75da-4a04-9d9c-87eac26c4b7b | Nupoor | nupoor@example.com
+(2 rows)
+
+rust_db=# UPDATE usersss SET name = 'Rajit Joshi' WHERE email = 'rajit@example.com';
+UPDATE 1
+rust_db=# SELECT * FROM usersss;
+                  id                  |    name     |       email
+--------------------------------------+-------------+--------------------
+ c6ebe93d-75da-4a04-9d9c-87eac26c4b7b | Nupoor      | nupoor@example.com
+ 135b9109-215f-4005-a8a0-785089188643 | Rajit Joshi | rajit@example.com
+(2 rows)
+
+rust_db=# DELETE FROM usersss WHERE email = 'rajit@example.com';
+DELETE 1
+rust_db=#  SELECT * FROM usersss;
+                  id                  |  name  |       email
+--------------------------------------+--------+--------------------
+ c6ebe93d-75da-4a04-9d9c-87eac26c4b7b | Nupoor | nupoor@example.com
+(1 row)
