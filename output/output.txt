@@ -7,11 +7,11 @@ WARNING: Console code page (437) differs from Windows code page (1252)
          page "Notes for Windows users" for details.
 Type "help" for help.
 
-postgres=# CREATE DATABASE rust_dbb;
+postgres=# CREATE DATABASE rust_db;
 CREATE DATABASE
 postgres=# CREATE USER rust_userr WITH PASSWORD 'password';
 CREATE ROLE
-postgres=# GRANT ALL PRIVILEGES ON DATABASE rust_dbb TO rust_userr;
+postgres=# GRANT ALL PRIVILEGES ON DATABASE rust_db TO rust_userr;
 GRANT
 postgres=# \c rust_db;
 You are now connected to database "rust_db" as user "postgres".
